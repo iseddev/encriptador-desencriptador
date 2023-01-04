@@ -10,34 +10,36 @@
 </head>
 <body class="body">
 	<main class="main">
-		<header class="header">
-			<div class="container">
-				<div class="row">
+		<div class="container">
+			<div class="row lg-10">
+				<header class="header">
 					<img src="assets/images/logo_alura.svg" alt="Logo del proyecto encriptador-desencriptador">
-				</div>
+				</header>
 			</div>
-		</header>
-		<section class="section">
-			<form class="form">
-				<div class="container">
-					<div class="row">
-						<textarea name="user-msg" id="user-msg" placeholder="Ingresa el texto aquí"></textarea>
+			<div class="row lg-55">
+				<form class="form">
+					<textarea name="user-msg" id="user-msg" placeholder="Ingresa el texto aquí" class="textarea"></textarea>
+					<div class="notice">
+            <img src="assets/images/bi_exclamation-circle-fill.svg" alt="Icono exclamación">
+            <span class="notice-content">Sólo letras minúsculas y sin acentos</span>
+          </div>
+					<div class="buttons-container">
+						<input type="submit" value="Encriptar" id="btn-encriptar" name="btn-encriptar" class="btn main-btn encrypt">
+						<input type="submit" value="Desencriptar" id="btn-desencriptar" name="btn-desencriptar" class="btn light-btn decrypt">
 					</div>
-					<div class="row">
-						<input type="submit" value="Encriptar" id="btn-encriptar" name="btn-encriptar">
-						<input type="submit" value="Desencriptar" id="btn-desencriptar" name="btn-desencriptar">
-					</div>
+				</form>
+			</div>
+			<div class="row lg-35">
+				<div class="not-found">
+					<img src="assets/images/encrypter_02.svg" alt="Imagen mensaje no encontrado" class="not-found_image">
+					<p class="not-found_title align-center">Ningún mensaje fue encontrado</p>
+					<p class="not-found_text align-center">Ingresa el mensaje que deseas encriptar o desencriptar</p>
 				</div>
-			</form>
-			<div class="container">
-				<div class="row">
-					<img src="assets/images/encrypter_02.svg" alt="Imagen mensaje no encontrado">
-					<p>Ningún mensaje fue encontrado</p>
-					<p>Ingresa el mensaje que deseas encriptar o desencriptar</p>
+				<div class="outcome">
 					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti eos laudantium ducimus eligendi, rem neque esse, praesentium sunt obcaecati vitae modi ullam quisquam quaerat maiores debitis est a reprehenderit velit.</p>
 				</div>
 			</div>
-		</section>
+		</div>
 	</main>
 
 	<script src="assets/scripts.js"></script>
