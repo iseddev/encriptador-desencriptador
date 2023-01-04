@@ -81,6 +81,7 @@ body {
   padding-right: 1rem;
   width: 100%;
   display: flex;
+	flex-grow: 1;
 }
 
 .btn {
@@ -119,15 +120,21 @@ body {
 
 .align-center { text-align: center; }
 
+
 /* Clases de estilo general */
 .body {
   display: flex;
   background-color: var(--light-blue-100);
   min-height: 100vh;
   height: 100%;
+	/* display: grid; */
 }
 
-.main { width: 100%; }
+.main {
+	width: 100%;
+	min-height: inherit;
+	height: 100%;
+}
 
 .header {
   position: relative;
@@ -196,29 +203,43 @@ body {
 .encrypt, .decrypt { flex-grow: 1; }
 
 /* Contenedor para la gestión de si el usario a ejecutado o no la encirptación/desencriptación */
-.not-found {
+
+.outcome-container {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	padding: 2rem;
+}
+
+.outcome-frame {
+	display: inline-block;
+	position: relative;
+	width: 100%;
+	height: 100%;
+	background-color: steelblue;
+	border-radius: 2rem;
+	padding: 2rem;
+  background-color: var(--white-color);
+  box-shadow: 0 1.5rem 2rem -.5rem rgba(0 0 0 / .08);
+}
+
+.empty {
   position: relative;
   width: 100%;
+	height: inherit;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  padding: 2rem;
-  border-radius: 2rem;
-  background-color: var(--white-color);
-  box-shadow: 0 1.5rem 2rem -.5rem rgba(0 0 0 / .08);
-  margin-top: 40px;
-  margin-bottom: 2.5rem;
-  margin-left: 1.5rem;
-  margin-right: 1.5rem;
+	display: none;
+	visibility: hidden;
 }
 
-
-.not-found_image {
+.empty-image {
   display: none;
 }
 
-.not-found_title {
+.empty-title {
   font-weight: var(--bold-font);
   font-size: var(--lg-font);
   color: var(--gray-500);
@@ -226,25 +247,28 @@ body {
   line-height: 120%;
 }
 
-.not-found_text {
+.empty-text {
   color: var(--gray-400);
   line-height: 150%;
 }
 
 /* Contenedor para la gestión de si el usario a ejecutado o no la encirptación/desencriptación */
-.outcome {
+.success {
+	position: relative;
+	width: 100%;
+	height: 100%;
   font-size: var(--lg-font);
   color: var(--gray-400);
   line-height: 150%;
+	flex-direction: column;
+	justify-content: space-between;
+	display: none;
+	visibility: hidden;
 }
 
-.outcome {
-  display: none;
-  margin-bottom: 2rem;
-}
-
-.tocopy {
-  display: none;
+.is-visible {
+	display: flex;
+	visibility: visible;
 }
 
 /* Media-queries para el diseño responsivo */
@@ -261,12 +285,13 @@ body {
 
   .buttons-container { margin-bottom: 4rem; }
 
-  .not-found {
+  .empty {
     flex-direction: column;
-    margin-top: 2.5rem;
-    margin-left: 0;
-    margin-right: 0;
+		align-items: center;
   }
 
-  .not-found_image { display: block; }
+  .empty-image {
+		display: block;
+		margin-bottom: 2rem;
+	}
 }
