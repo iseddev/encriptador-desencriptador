@@ -127,6 +127,8 @@ body {
   height: 100%;
 }
 
+.main { width: 100%; }
+
 .header {
   position: relative;
   display: flex;
@@ -135,8 +137,6 @@ body {
   width: 100%;
   height: var(--header-height);
 }
-
-.main { width: 100%; }
 
 .form {
   display: flex;
@@ -155,7 +155,6 @@ body {
   font-weight: var(--reg-font);
   color: var(--dark-blue-300);
   border: none;
-  resize: none;
   line-height: 150%;
   padding-top: 5rem;
   margin-bottom: 4rem;
@@ -186,7 +185,7 @@ body {
   line-height: 18px;
 }
 
-.buttons {
+.buttons-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -194,12 +193,10 @@ body {
   margin-bottom: 1.5rem;
 }
 
-.encrypt, .decrypt {
-  flex-basis: 1;
-  flex-grow: 1;
-}
+.encrypt, .decrypt { flex-grow: 1; }
 
-.notfound {
+/* Contenedor para la gestión de si el usario a ejecutado o no la encirptación/desencriptación */
+.not-found {
   position: relative;
   width: 100%;
   display: flex;
@@ -216,11 +213,12 @@ body {
   margin-right: 1.5rem;
 }
 
-.notfound-image {
+
+.not-found_image {
   display: none;
 }
 
-.notfound-title {
+.not-found_title {
   font-weight: var(--bold-font);
   font-size: var(--lg-font);
   color: var(--gray-500);
@@ -228,11 +226,12 @@ body {
   line-height: 120%;
 }
 
-.notfound-text {
+.not-found_text {
   color: var(--gray-400);
   line-height: 150%;
 }
 
+/* Contenedor para la gestión de si el usario a ejecutado o no la encirptación/desencriptación */
 .outcome {
   font-size: var(--lg-font);
   color: var(--gray-400);
@@ -249,6 +248,10 @@ body {
 }
 
 /* Media-queries para el diseño responsivo */
+@media screen and (min-width: 768px) {
+	.encrypt, .decrypt { flex-basis: 0; }
+}
+
 @media screen and (min-width: 1024px) {
   .lg-10 { width: 10% }
   .lg-35 { width: 35% }
@@ -256,14 +259,14 @@ body {
 
   .textarea { padding-top: 10.5rem; }
 
-  .buttons { margin-bottom: 4rem; }
+  .buttons-container { margin-bottom: 4rem; }
 
-  .notfound {
+  .not-found {
     flex-direction: column;
     margin-top: 2.5rem;
     margin-left: 0;
     margin-right: 0;
   }
 
-  .notfound-image { display: block; }
+  .not-found_image { display: block; }
 }
