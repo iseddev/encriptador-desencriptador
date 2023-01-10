@@ -17,28 +17,28 @@
 		</div>
 		<div class="row lg-55">
 			<form class="form">
-				<textarea name="user-msg" id="user-msg" placeholder="Ingresa el texto aquí" class="textarea"></textarea>
+				<textarea name="user-msg" id="textarea" placeholder="Ingresa el texto aquí" class="textarea"></textarea>
 				<div class="notice">
 					<img src="assets/images/bi_exclamation-circle-fill.svg" alt="Icono exclamación">
 					<span class="notice-content">Sólo letras minúsculas y sin acentos</span>
 				</div>
 				<div class="buttons-container">
-					<input type="submit" value="Encriptar" id="btn-encriptar" name="btn-encriptar" class="btn main-btn encrypt">
-					<input type="submit" value="Desencriptar" id="btn-desencriptar" name="btn-desencriptar" class="btn light-btn decrypt">
+					<input type="submit" value="Encriptar" name="btn-encriptar" class="btn main-btn encrypt" id="btn-encrypt">
+					<input type="submit" value="Desencriptar" name="btn-desencriptar" class="btn light-btn decrypt" id="btn-decrypt">
 				</div>
 			</form>
 		</div>
 		<div class="row lg-35">
 			<div class="outcome-container">
 				<div class="outcome-frame">
-					<div class="empty is-visible">
+					<div class="empty is-visible" id="empty">
 						<img src="assets/images/encrypter_02.svg" alt="Imagen mensaje no encontrado" class="empty-image">
 						<p class="empty-title align-center">Ningún mensaje fue encontrado</p>
 						<p class="empty-text align-center">Ingresa el mensaje que deseas encriptar o desencriptar</p>
 					</div>
-					<div class="success">
-						<p class="success-output">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti eos laudantium ducimus eligendi, rem neque esse, praesentium sunt obcaecati vitae modi ullam quisquam quaerat maiores debitis est a reprehenderit velit.</p>
-						<button class="btn light-btn success-clone">Copiar</button>
+					<div class="success" id="success">
+						<p class="success-output" id="success-output">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti eos laudantium ducimus eligendi, rem neque esse, praesentium sunt obcaecati vitae modi ullam quisquam quaerat maiores debitis est a reprehenderit velit.</p>
+						<button class="btn light-btn success-copy" id="btn-copy">Copiar</button>
 					</div>
 				</div>
 			</div>
