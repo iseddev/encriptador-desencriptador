@@ -266,6 +266,10 @@ body {
 	visibility: hidden;
 }
 
+.success-output {
+	word-break: keep-all;
+}
+
 .is-visible {
 	display: flex;
 	visibility: visible;
