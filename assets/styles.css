@@ -168,13 +168,9 @@ body {
   background-color: var(--light-blue-100);
 }
 
-.textarea::placeholder {
-  color: var(--dark-blue-300);
-}
+.textarea::placeholder { color: var(--dark-blue-300); }
 
-.textarea:focus {
-  outline-style: none;
-}
+.textarea:focus { outline-style: none; }
 
 .notice {
   display: flex;
@@ -235,9 +231,7 @@ body {
 	visibility: hidden;
 }
 
-.empty-image {
-  display: none;
-}
+.empty-image { display: none; }
 
 .empty-title {
   font-weight: var(--bold-font);
@@ -267,7 +261,8 @@ body {
 }
 
 .success-output {
-	word-break: keep-all;
+	margin-bottom: 2rem;
+	word-break: break-word;
 }
 
 .is-visible {
