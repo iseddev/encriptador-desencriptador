@@ -48,6 +48,15 @@ $btnDecrypt.addEventListener("click", e => {
 	}
 })
 
+// Detectar evento "click" en el boton "Copiar" y proceder a copiar el mensaje encriptado
+$btnCopy.addEventListener("click", e => {
+
+	let text = $successOutput.innerHTML
+	console.log(`Contenido de 'text': ${text}`) // Línea para validar que 'text' tiene contenido, eliminar posteriormente
+	navigator.clipboard.writeText(text)
+
+})
+
 // Función para la encriptación del mensaje ingresado
 const encryptMessage = (message) => {
 
