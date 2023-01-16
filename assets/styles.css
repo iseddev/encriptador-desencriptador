@@ -49,9 +49,12 @@ html {
 }
 
 *, *:before, *:after {
-  box-sizing: inherit;
+	box-sizing: inherit;
   margin: 0;
   padding: 0;
+	font-family: var(--main-font);
+	font-weight: var(--reg-font);
+	font-size: 16px;
 }
 
 img {
@@ -59,29 +62,24 @@ img {
   height: auto;
 }
 
-body {
-  font-family: var(--main-font);
-  font-style: normal;
-  font-size: 16px;
-  font-weight: var(--reg-font);
-}
-
 /* Clases utilitarias para el proyecto*/
 .container {
   display: flex;
   flex-wrap: wrap;
-  max-width: var(--max-width);
+	max-width: var(--max-width);
   margin-left: auto;
   margin-right: auto;
   width: 100%;
 }
 
+.full { max-width: 100%; }
+
 .row {
+  width: 100%;
   padding-left: 1rem;
   padding-right: 1rem;
-  width: 100%;
   display: flex;
-	flex-grow: 1;
+	/* flex-grow: 1; */
 }
 
 .btn {
@@ -123,17 +121,15 @@ body {
 
 /* Clases de estilo general */
 .body {
-  display: flex;
   background-color: var(--light-blue-100);
   min-height: 100vh;
   height: 100%;
-	/* display: grid; */
 }
 
 .main {
 	width: 100%;
-	min-height: inherit;
 	height: 100%;
+	min-height: 100vh;
 }
 
 .header {
@@ -145,15 +141,15 @@ body {
   height: var(--header-height);
 }
 
-.form {
+.user-entry {
   display: flex;
   flex-direction: column;
   width: 100%;
-  min-height: calc(100vh - var(--header-height));
+  min-height: 100vh;
   height: 100%;
 }
 
-.textarea {
+.user-text {
   width: 100%;
   flex-basis: 0;
   flex-grow: 1000;
@@ -161,18 +157,18 @@ body {
   font-size: var(--xl-font);
   font-weight: var(--reg-font);
   color: var(--dark-blue-300);
+	padding-top: 6rem;
   border: none;
   line-height: 150%;
-  padding-top: 5rem;
   margin-bottom: 4rem;
   background-color: var(--light-blue-100);
 }
 
-.textarea::placeholder { color: var(--dark-blue-300); }
+.user-text::placeholder { color: var(--dark-blue-300); }
 
-.textarea:focus { outline-style: none; }
+.user-text:focus, .output-success_content { outline-style: none; }
 
-.notice {
+.user-notice {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -182,7 +178,7 @@ body {
   margin-bottom: 1rem;
 }
 
-.notice-content {
+.user-notice_content {
   font-size: var(--sm-font);
   color: var(--gray-400);
   line-height: 18px;
@@ -200,40 +196,39 @@ body {
 
 /* Contenedor para la gestión de si el usario a ejecutado o no la encirptación/desencriptación */
 
-.outcome-container {
+.output {
 	position: relative;
 	width: 100%;
 	height: 100%;
 	padding: 2rem;
 }
 
-.outcome-frame {
+.output-frame {
 	display: inline-block;
 	position: relative;
 	width: 100%;
 	height: 100%;
-	background-color: steelblue;
 	border-radius: 2rem;
 	padding: 2rem;
   background-color: var(--white-color);
   box-shadow: 0 1.5rem 2rem -.5rem rgba(0 0 0 / .08);
 }
 
-.empty {
+.output-empty {
   position: relative;
   width: 100%;
-	height: inherit;
+	height: 100%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
 	display: none;
 	visibility: hidden;
 }
 
-.empty-image { display: none; }
+/* .output-empty_image { display: none; } */
 
-.empty-title {
+.output-empty_title {
   font-weight: var(--bold-font);
   font-size: var(--lg-font);
   color: var(--gray-500);
@@ -241,13 +236,13 @@ body {
   line-height: 120%;
 }
 
-.empty-text {
+.output-empty_text {
   color: var(--gray-400);
   line-height: 150%;
 }
 
-/* Contenedor para la gestión de si el usario a ejecutado o no la encirptación/desencriptación */
-.success {
+/* Contenedor para la gestión de si el usario a ejecutado o no la encriptación/desencriptación */
+.output-success {
 	position: relative;
 	width: 100%;
 	height: 100%;
@@ -260,9 +255,14 @@ body {
 	visibility: hidden;
 }
 
-.success-output {
+.output-success_content {
+	width: 100%;
+	height: inherit;
+	border: none;
 	margin-bottom: 2rem;
 	word-break: break-word;
+	font-size: 1.5rem;
+	color: var(--gray-400);
 }
 
 .is-visible {
@@ -277,10 +277,9 @@ body {
 
 @media screen and (min-width: 1024px) {
   .lg-10 { width: 10% }
-  .lg-35 { width: 35% }
-  .lg-55 { width: 55% }
-
-  .textarea { padding-top: 10.5rem; }
+  .lg-40 { width: 40% }
+  .lg-60 { width: 60% }
+  .lg-90 { width: 90% }
 
   .buttons-container { margin-bottom: 4rem; }
 

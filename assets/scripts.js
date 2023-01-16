@@ -2,95 +2,96 @@
 const d = document
 
 // "Capturar" elementos del área de ingreso del mensaje y botones para encriptar y desencriptar
-const $textArea = d.getElementById("textarea")
-const $btnEncrypt = d.getElementById("btn-encrypt")
-const $btnDecrypt = d.getElementById("btn-decrypt")
+const $textArea = d.querySelector("#textarea-text")
+const $btnEncrypt = d.querySelector("#btn-encrypt")
+const $btnDecrypt = d.querySelector("#btn-decrypt")
 
-// "Capturar" elementos del area del mensaje encriptado y el botón de copiar mensaje encriptado
-const $emptyContainer = d.getElementById("empty")
-const $successContainer = d.getElementById("success")
-const $successOutput = d.getElementById("success-output")
-const $btnCopy = d.getElementById("btn-copy")
+// "Capturar" elementos del area que mostrará los resultados del mensaje encriptado y el botón de copiar mensaje encriptado
+const $emptyContainer = d.querySelector("#empty")
+const $successContainer = d.querySelector("#success")
+const $textareaSuccess = d.querySelector("#textarea-success")
+const $btnCopy = d.querySelector("#btn-copy")
 
-// Detectar evento "click" en el boton "Encriptar" y proceder a la encriptación del mensaje ingresado
-$btnEncrypt.addEventListener("click", e => {
-	e.preventDefault()
 
-	// Convertir mensaje ingresado a minusculas y eliminar todos los posibles espacios al principio y final del texto
-	let textAreaContent = $textArea.value.toLowerCase().trim()
+// ===== E N C R I P T A R   (EVENTO CLICK) =====
+$btnEncrypt.addEventListener("click", () => {
 
-	// Validar si el mensaje ingresado está "vacío"
-	if(textAreaContent !== "") {
-		let encryptedMsg = encryptMessage(textAreaContent)
-		$emptyContainer.classList.remove("is-visible")
-		$successContainer.classList.add("is-visible")
-		$successOutput.innerHTML = encryptedMsg
-	} else {
-		$successContainer.classList.remove("is-visible")
-		$emptyContainer.classList.add("is-visible")
-	}
+	if($textArea.value !== "") {
+		let userText = $textArea.value.toLowerCase().trim()
+		let encryptedText = encryptText(userText)
+		successOutput(encryptedText)
+	} else { emptyOutput() }
 })
 
-// Detectar evento "click" en el boton "Desencriptar" y proceder a la desencriptación del mensaje ingresado
-$btnDecrypt.addEventListener("click", e => {
-	e.preventDefault()
-	// Convertir mensaje ingresado a minusculas y eliminar todos los posibles espacios al principio y final del texto
-	let textAreaContent = $textArea.value.toLowerCase().trim()
+// ===== D E S E N C R I P T A R   (EVENTO CLICK) =====
+$btnDecrypt.addEventListener("click", () => {
 
-	if(textAreaContent !== "") {
-		let decryptedMsg = decryptMessage(textAreaContent)
-		$emptyContainer.classList.remove("is-visible")
-		$successContainer.classList.add("is-visible")
-		$successOutput.innerHTML = decryptedMsg
-	} else {
-		$successContainer.classList.remove("is-visible")
-		$emptyContainer.classList.add("is-visible")
-	}
+	if($textArea.value !== "") {
+		let encryptedText = $textArea.value.toLowerCase().trim()
+		let decryptedText = decryptText(encryptedText)
+		successOutput(decryptedText)
+	} else { emptyOutput() }
 })
 
-// Detectar evento "click" en el boton "Copiar" y proceder a copiar el mensaje encriptado
-$btnCopy.addEventListener("click", e => {
-
-	let text = $successOutput.innerHTML
-	console.log(`Contenido de 'text': ${text}`) // Línea para validar que 'text' tiene contenido, eliminar posteriormente
-	navigator.clipboard.writeText(text)
-
+// ===== C O P I A R   (EVENTO CLICK) =====
+$btnCopy.addEventListener("click", () => {
+	const copyText = $textareaSuccess.textContent
+	console.log(copyText) // Validar el contenido de "copyText"
+	console.log(typeof copyText) // Validar el tipo de dato del contenido de "copyText"
+	navigator.clipboard.writeText(copyText).then( // Se obtiene error!!!
+		() => {
+			alert(`${copyText} ha sido copiado al clipboard!!!`) // Alerta para verificar que el texto se ha copiado al clipboard
+		}
+	)
 })
 
-// Función para la encriptación del mensaje ingresado
-const encryptMessage = (message) => {
+// ===== E N C R I P T A R   (FUNCIÓN) =====
+const encryptText = (text) => {
 
-	const messageArr = message.split(" ")
-  let encrypt = ""
+	const textArr = text.split(" ")
+  let encryptedWord = ""
+	let encryptedFullText = ""
   const encryptedArr = []
 
-  messageArr.forEach((word) => {
+  textArr.forEach((word) => {
     for(let i = 0; i < word.length; i++) {
       word[i] === "a" || word[i] === "á"
-        ? encrypt += "ai"
+        ? encryptedWord += "ai"
         : word[i] === "e" || word[i] === "é"
-          ? encrypt += "enter"
+          ? encryptedWord += "enter"
           : word[i] === "i" || word[i] === "í"
-            ? encrypt += "imes"
+            ? encryptedWord += "imes"
             : word[i] === "o" || word[i] === "ó"
-              ? encrypt += "ober"
+              ? encryptedWord += "ober"
               : word[i] === "u" || word[i] === "ú"
-                ? encrypt += "ufat"
-                : encrypt += word[i]
+                ? encryptedWord += "ufat"
+                : encryptedWord += word[i]
     }
-    encryptedArr.push(encrypt)
-    encrypt = ""
+    encryptedArr.push(encryptedWord)
+    encryptedWord = ""
   })
 
-  let encryptedMessage = encryptedArr.join(" ")
-
-  return encryptedMessage
+  encryptedFullText = encryptedArr.join(" ")
+  return encryptedFullText
 }
 
-// Función para la encriptación del mensaje ingresado
-const decryptMessage = (message) => {
+// ===== D E S E N C R I P T A R   (FUNCIÓN) =====
+const decryptText = (text) => {
 
-	let decryptedMsg = message.replaceAll("ai", "a").replaceAll("enter", "e").replaceAll("imes", "i").replaceAll("ober", "o").replaceAll("ufat", "u")
+	let decryptedText = text.replaceAll("ai", "a").replaceAll("enter", "e").replaceAll("imes", "i").replaceAll("ober", "o").replaceAll("ufat", "u")
 
-	return decryptedMsg
+	return decryptedText
+}
+
+const successOutput = (outputText) => {
+	// $textareaSuccess.setAttribute("value", outputText)
+	$textareaSuccess.value = outputText
+	$textareaSuccess.innerHTML = outputText
+	$emptyContainer.classList.remove("is-visible")
+	$successContainer.classList.add("is-visible")
+}
+
+const emptyOutput = () => {
+	$successContainer.classList.remove("is-visible")
+	$emptyContainer.classList.add("is-visible")
 }

@@ -9,41 +9,47 @@
 	<title>Reto Alura+ONE | Encriptador y Desencriptador</title>
 </head>
 <body class="body">
-	<main class="main container">
+	<div class="container">
 		<div class="row lg-10">
 			<header class="header">
 				<img src="assets/images/logo_alura.svg" alt="Logo del proyecto encriptador-desencriptador">
 			</header>
 		</div>
-		<div class="row lg-55">
-			<form class="form">
-				<textarea name="user-msg" id="textarea" placeholder="Ingresa el texto aquí" class="textarea"></textarea>
-				<div class="notice">
-					<img src="assets/images/bi_exclamation-circle-fill.svg" alt="Icono exclamación">
-					<span class="notice-content">Sólo letras minúsculas y sin acentos</span>
-				</div>
-				<div class="buttons-container">
-					<input type="submit" value="Encriptar" name="btn-encriptar" class="btn main-btn encrypt" id="btn-encrypt">
-					<input type="submit" value="Desencriptar" name="btn-desencriptar" class="btn light-btn decrypt" id="btn-decrypt">
-				</div>
-			</form>
-		</div>
-		<div class="row lg-35">
-			<div class="outcome-container">
-				<div class="outcome-frame">
-					<div class="empty is-visible" id="empty">
-						<img src="assets/images/encrypter_02.svg" alt="Imagen mensaje no encontrado" class="empty-image">
-						<p class="empty-title align-center">Ningún mensaje fue encontrado</p>
-						<p class="empty-text align-center">Ingresa el mensaje que deseas encriptar o desencriptar</p>
+		<div class="row lg-90">
+			<main class="main">
+				<div class="container full">
+					<div class="row lg-60">
+						<section class="user-entry">
+							<textarea placeholder="Ingresa el texto aquí" autofocus class="user-text" id="textarea-text"></textarea>
+							<div class="user-notice">
+								<img src="assets/images/bi_exclamation-circle-fill.svg" alt="Icono exclamación">
+								<span class="user-notice_content">Sólo letras minúsculas y sin acentos</span>
+							</div>
+							<div class="buttons-container">
+								<button class="btn main-btn encrypt" id="btn-encrypt">Encriptar</button>
+								<button class="btn light-btn decrypt" id="btn-decrypt">Desencriptar</button>
+							</div>
+						</section>
 					</div>
-					<div class="success" id="success">
-						<p class="success-output" id="success-output"></p>
-						<button class="btn light-btn success-copy" id="btn-copy">Copiar</button>
+					<div class="row lg-40">
+						<section class="output">
+							<div class="output-frame">
+								<div class="output-empty is-visible" id="empty">
+									<img src="assets/images/encrypter_02.svg" alt="Imagen mensaje no encontrado" class="output-empty_image">
+									<p class="output-empty_title align-center">Ningún mensaje fue encontrado</p>
+									<p class="output-empty_text align-center">Ingresa el mensaje que deseas encriptar o desencriptar</p>
+								</div>
+								<div class="output-success" id="success">
+									<textarea class="output-success_content" id="textarea-success"> </textarea>
+									<button class="btn light-btn output-success_btn" id="btn-copy">Copiar</button>
+								</div>
+							</div>
+						</section>
 					</div>
 				</div>
-			</div>
+			</main>
 		</div>
-	</main>
+	</div>
 
 	<script src="assets/scripts.js"></script>
 </body>
