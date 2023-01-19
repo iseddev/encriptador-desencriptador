@@ -14,12 +14,13 @@ const $btnCopy = d.querySelector("#btn-copy")
 
 
 // ===== E N C R I P T A R   (EVENTO CLICK) =====
-$btnEncrypt.addEventListener("click", () => {
+$btnEncrypt.addEventListener("click", (e) => {
 
 	if($textArea.value !== "") {
 		let userText = $textArea.value.toLowerCase().trim()
 		let encryptedText = encryptText(userText)
 		successOutput(encryptedText)
+		scrolling()
 	} else { emptyOutput() }
 })
 
@@ -30,19 +31,28 @@ $btnDecrypt.addEventListener("click", () => {
 		let encryptedText = $textArea.value.toLowerCase().trim()
 		let decryptedText = decryptText(encryptedText)
 		successOutput(decryptedText)
+		scrolling()
 	} else { emptyOutput() }
 })
 
 // ===== C O P I A R   (EVENTO CLICK) =====
 $btnCopy.addEventListener("click", () => {
-	const copyText = $textareaSuccess.textContent
-	console.log(copyText) // Validar el contenido de "copyText"
-	console.log(typeof copyText) // Validar el tipo de dato del contenido de "copyText"
-	navigator.clipboard.writeText(copyText).then( // Se obtiene error!!!
+
+	navigator.clipboard.writeText($textareaSuccess.value).then(
 		() => {
-			alert(`${copyText} ha sido copiado al clipboard!!!`) // Alerta para verificar que el texto se ha copiado al clipboard
-		}
+			const $tooltip = d.querySelector("#tooltip-box")
+			$tooltip.classList.remove("tooltip-hiden")
+			animateTooltip($tooltip, 32, 64)
+			const removeTooltip = setTimeout(() => {
+				$tooltip.classList.add("tooltip-hiden")
+			}, 2000)
+		},
+		() => { alert("Upsss, algo salió mal, no se ha podido copiar el texto") }
 	)
+
+	$textareaSuccess.select()
+  $textareaSuccess.setSelectionRange(0, 99999)
+	
 })
 
 // ===== E N C R I P T A R   (FUNCIÓN) =====
@@ -83,6 +93,7 @@ const decryptText = (text) => {
 	return decryptedText
 }
 
+// ===== M O S T R A R   M E N S A J E   E N C R I P T A D O - D E S E N C R I P T A D O =====
 const successOutput = (outputText) => {
 	// $textareaSuccess.setAttribute("value", outputText)
 	$textareaSuccess.value = outputText
@@ -94,4 +105,33 @@ const successOutput = (outputText) => {
 const emptyOutput = () => {
 	$successContainer.classList.remove("is-visible")
 	$emptyContainer.classList.add("is-visible")
+}
+
+const animateTooltip = (el, init, end) => {
+	el.style.transform = `translateY(-${end}px)`
+	const translateUp = el.animate([
+		// Keyframes
+		{transform: `TranslateY(-${init}px)`},
+		{transform: `TranslateY(-${end}px)`},
+	],{
+		// Options
+		easing: "ease-in-out",
+		iterations: 1,
+		duration: 300
+	})
+	return translateUp.finished
+}
+
+const scrolling = () => {
+
+	let userNavigator = navigator.userAgent
+
+	if(userNavigator.match(/Android/i) || userNavigator.match(/webOS/i) || userNavigator.match(/iPhone/i) || userNavigator.match(/iPad/i) || userNavigator.match(/iPod/i) || userNavigator.match(/BlackBerry/i) || userNavigator.match(/Windows Phone/i)) {
+		const $outputFrame = d.querySelector("#output-frame")
+		let coords = $outputFrame.getBoundingClientRect()
+		window.scrollTo({
+			top: coords.top,
+			behavior: "smooth"
+		})
+	}
 }

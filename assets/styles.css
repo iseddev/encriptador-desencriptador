@@ -79,8 +79,10 @@ img {
   padding-left: 1rem;
   padding-right: 1rem;
   display: flex;
-	/* flex-grow: 1; */
 }
+
+.xs-20 { width: 20% }
+.xs-80 { width: 80% }
 
 .btn {
   display: flex;
@@ -128,8 +130,8 @@ img {
 
 .main {
 	width: 100%;
-	height: 100%;
-	min-height: 100vh;
+	min-height: calc(100vh - var(--header-height));
+	height: 100%
 }
 
 .header {
@@ -145,8 +147,9 @@ img {
   display: flex;
   flex-direction: column;
   width: 100%;
-  min-height: 100vh;
-  height: 100%;
+  min-height: 100%;
+  height: inherit;
+	padding-bottom: 3rem;
 }
 
 .user-text {
@@ -157,7 +160,7 @@ img {
   font-size: var(--xl-font);
   font-weight: var(--reg-font);
   color: var(--dark-blue-300);
-	padding-top: 6rem;
+	padding-top: 1rem;
   border: none;
   line-height: 150%;
   margin-bottom: 4rem;
@@ -265,6 +268,30 @@ img {
 	color: var(--gray-400);
 }
 
+.output-success_content::selection { background-color: transparent; }
+
+.tooltip {
+	position: relative;
+}
+
+.tooltip-box {
+	display: initial;
+	position: absolute;
+	padding: .9rem 1.2rem;
+	color: var(--white-color);
+	background-color: var(--dark-blue-400);
+	border-radius: .6rem;
+	font-size: .8rem;
+	font-weight: 100;
+	letter-spacing: .03rem;
+	visibility: visible;
+}
+
+.tooltip-hiden {
+	display: none;
+	visibility: hidden;
+}
+
 .is-visible {
 	display: flex;
 	visibility: visible;
@@ -276,10 +303,19 @@ img {
 }
 
 @media screen and (min-width: 1024px) {
+	.d-column {	flex-direction: column; }
+
   .lg-10 { width: 10% }
-  .lg-40 { width: 40% }
-  .lg-60 { width: 60% }
+  .lg-35 { width: 35% }
+  .lg-55 { width: 55% }
   .lg-90 { width: 90% }
+  .lg-100 { width: 100% }
+
+	.main { height: 100vh}
+
+	.user-entry { padding-bottom: 0 }
+
+	.user-text { padding-top: 6rem; }
 
   .buttons-container { margin-bottom: 4rem; }
 
