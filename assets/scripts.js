@@ -52,7 +52,7 @@ $btnCopy.addEventListener("click", () => {
 
 	$textareaSuccess.select()
   $textareaSuccess.setSelectionRange(0, 99999)
-	
+
 })
 
 // ===== E N C R I P T A R   (FUNCIÓN) =====
@@ -124,11 +124,11 @@ const animateTooltip = (el, init, end) => {
 
 const scrolling = () => {
 
+	const $outputFrame = d.querySelector("#output-frame")
 	let userNavigator = navigator.userAgent
+	let coords = $outputFrame.getBoundingClientRect()
 
 	if(userNavigator.match(/Android/i) || userNavigator.match(/webOS/i) || userNavigator.match(/iPhone/i) || userNavigator.match(/iPad/i) || userNavigator.match(/iPod/i) || userNavigator.match(/BlackBerry/i) || userNavigator.match(/Windows Phone/i)) {
-		const $outputFrame = d.querySelector("#output-frame")
-		let coords = $outputFrame.getBoundingClientRect()
 		window.scrollTo({
 			top: coords.top,
 			behavior: "smooth"
