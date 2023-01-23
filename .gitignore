@@ -171,7 +171,6 @@ dist
 .tern-port
 
 # Stores VSCode versions used for testing VSCode extensions
-.vscode
 .vscode-test
 
 # yarn v2
@@ -202,6 +201,7 @@ dist
 # Directories potentially created on remote AFP share
 
 ### VisualStudioCode ###
+.vscode
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
