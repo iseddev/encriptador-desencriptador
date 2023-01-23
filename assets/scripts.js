@@ -16,7 +16,7 @@ const $btnCopy = d.querySelector("#btn-copy")
 // ===== E N C R I P T A R   (EVENTO CLICK) =====
 $btnEncrypt.addEventListener("click", (e) => {
 
-	if($textArea.value !== "") {
+	if($textArea.value) {
 		let userText = $textArea.value.toLowerCase().trim()
 		let encryptedText = encryptText(userText)
 		successOutput(encryptedText)
@@ -27,7 +27,7 @@ $btnEncrypt.addEventListener("click", (e) => {
 // ===== D E S E N C R I P T A R   (EVENTO CLICK) =====
 $btnDecrypt.addEventListener("click", () => {
 
-	if($textArea.value !== "") {
+	if($textArea.value) {
 		let encryptedText = $textArea.value.toLowerCase().trim()
 		let decryptedText = decryptText(encryptedText)
 		successOutput(decryptedText)
@@ -42,16 +42,14 @@ $btnCopy.addEventListener("click", () => {
 		() => {
 			const $tooltip = d.querySelector("#tooltip-box")
 			$tooltip.classList.remove("tooltip-hiden")
-			animateTooltip($tooltip, 32, 64)
-			const removeTooltip = setTimeout(() => {
-				$tooltip.classList.add("tooltip-hiden")
-			}, 2000)
+			animateTooltip($tooltip, 48, 64)
+			const removeTooltip = setTimeout(() => { $tooltip.classList.add("tooltip-hiden") }, 2000)
 		},
 		() => { alert("Upsss, algo salió mal, no se ha podido copiar el texto") }
 	)
 
-	$textareaSuccess.select()
-  $textareaSuccess.setSelectionRange(0, 99999)
+	// $textareaSuccess.select()
+  // $textareaSuccess.setSelectionRange(0, 99999)
 
 })
 
@@ -107,28 +105,28 @@ const emptyOutput = () => {
 	$emptyContainer.classList.add("is-visible")
 }
 
-const animateTooltip = (el, init, end) => {
-	el.style.transform = `translateY(-${end}px)`
-	const translateUp = el.animate([
+const animateTooltip = (el, initPX, endPX) => {
+	el.style.transform = `TranslateY(-${endPX}px)`
+	const translateDown = el.animate([
 		// Keyframes
-		{transform: `TranslateY(-${init}px)`},
-		{transform: `TranslateY(-${end}px)`},
+		{transform: `TranslateY(-${initPX}px)`},
+		{transform: `TranslateY(-${endPX}px)`},
 	],{
 		// Options
 		easing: "ease-in-out",
 		iterations: 1,
 		duration: 300
 	})
-	return translateUp.finished
+	return translateDown.finished
 }
 
 const scrolling = () => {
 
-	const $outputFrame = d.querySelector("#output-frame")
 	let userNavigator = navigator.userAgent
-	let coords = $outputFrame.getBoundingClientRect()
 
 	if(userNavigator.match(/Android/i) || userNavigator.match(/webOS/i) || userNavigator.match(/iPhone/i) || userNavigator.match(/iPad/i) || userNavigator.match(/iPod/i) || userNavigator.match(/BlackBerry/i) || userNavigator.match(/Windows Phone/i)) {
+		const $outputFrame = d.querySelector("#output-frame")
+		let coords = $outputFrame.getBoundingClientRect()
 		window.scrollTo({
 			top: coords.top,
 			behavior: "smooth"

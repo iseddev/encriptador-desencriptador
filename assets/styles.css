@@ -165,6 +165,7 @@ img {
   line-height: 150%;
   margin-bottom: 4rem;
   background-color: var(--light-blue-100);
+	resize: none;
 }
 
 .user-text::placeholder { color: var(--dark-blue-300); }
@@ -207,7 +208,6 @@ img {
 }
 
 .output-frame {
-	display: inline-block;
 	position: relative;
 	width: 100%;
 	height: 100%;
@@ -228,8 +228,6 @@ img {
 	display: none;
 	visibility: hidden;
 }
-
-/* .output-empty_image { display: none; } */
 
 .output-empty_title {
   font-weight: var(--bold-font);
@@ -260,15 +258,15 @@ img {
 
 .output-success_content {
 	width: 100%;
-	height: inherit;
+	height: 100%;
+	min-height: 50vh;
 	border: none;
 	margin-bottom: 2rem;
 	word-break: break-word;
 	font-size: 1.5rem;
 	color: var(--gray-400);
+	resize: none;
 }
-
-.output-success_content::selection { background-color: transparent; }
 
 .tooltip {
 	position: relative;
@@ -315,7 +313,7 @@ img {
 
 	.user-entry { padding-bottom: 0 }
 
-	.user-text { padding-top: 6rem; }
+	.user-text { margin-top: 6rem; }
 
   .buttons-container { margin-bottom: 4rem; }
 
